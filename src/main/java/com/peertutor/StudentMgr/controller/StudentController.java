@@ -1,8 +1,8 @@
 package com.peertutor.StudentMgr.controller;
 
-import com.peertutor.StudentMgr.repository.CustomerRepository;
+import com.peertutor.StudentMgr.repository.StudentRepository;
 import com.peertutor.StudentMgr.util.AppConfig;
-import com.peertutor.StudentMgr.model.Customer;
+import com.peertutor.StudentMgr.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.SpringVersion;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Controller
-@RequestMapping(path="/customer")
-public class CustomerController {
+@RequestMapping(path="/student")
+public class StudentController {
     @Autowired
     AppConfig appConfig;
     @Autowired
-    private CustomerRepository customerRepository;// = new CustomerRepository();
+    private StudentRepository studentRepository;// = new CustomerRepository();
     @GetMapping(path="/")
     public @ResponseBody String defaultResponse(){
 
@@ -70,19 +70,19 @@ public class CustomerController {
         String firstName = customerDTO.get("firstName");
         String lastName = customerDTO.get("lastName");
         // create DTO
-        Customer customer = new Customer(firstName, lastName);
+        Student customer = new Student(firstName, lastName);
 
         // dao layer: save object to db
-        customerRepository.save(customer);
+        studentRepository.save(customer);
 
         // todo: better logging
         // todo: generalise response message
         return "Saved";
     }
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Customer> getAllCustomers (){
+    public @ResponseBody Iterable<Student> getAllCustomers (){
 
-        return customerRepository.findAll();
+        return studentRepository.findAll();
     }
 
 

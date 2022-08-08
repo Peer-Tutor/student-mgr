@@ -5,16 +5,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Customer {
+public class Student {
     @Id
     @GeneratedValue
     private Long id;
     private String firstName;
     private String lastName;
 
-    protected Customer (){};
+    protected Student(){};
 
-    public Customer( String firstName, String lastName) {
+    public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
