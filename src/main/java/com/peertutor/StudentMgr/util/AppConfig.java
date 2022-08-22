@@ -8,29 +8,91 @@ import java.util.Map;
 @Configuration
 @ConfigurationProperties(prefix="app-config")
 public class AppConfig {
-    private Map<String, String> appOne;
-    private Map<String, String> appTwo;
 
-    public Map<String, String> getAppOne() {
-        return appOne;
-    }
-    public void setAppOne(Map<String, String> appOne) {
-        this.appOne = appOne;
+    private Map<String, String> bookmarkMgr;
+    private Map<String, String> studentMgr;
+    private Map<String, String> tutorCalendarMgr;
+    private Map<String, String> notificationMgr;
+    private Map<String, String> reviewMgr;
+    private Map<String, String> recommendationMgr;
+    private Map<String, String> tuitionOrderMgr;
+    private Map<String, String> accountMgr;
+
+    public Map<String, String> getBookmarkMgr() {
+        return bookmarkMgr;
     }
 
-    public Map<String, String> getAppTwo() {
-        return appTwo;
+    public void setBookmarkMgr(Map<String, String> bookmarkMgr) {
+        this.bookmarkMgr = bookmarkMgr;
     }
 
-    public void setAppTwo(Map<String, String> appTwo) {
-        this.appTwo = appTwo;
+    public Map<String, String> getStudentMgr() {
+        return studentMgr;
+    }
+
+    public void setStudentMgr(Map<String, String> studentMgr) {
+        this.studentMgr = studentMgr;
+    }
+
+    public Map<String, String> getTutorCalendarMgr() {
+        return tutorCalendarMgr;
+    }
+
+    public void setTutorCalendarMgr(Map<String, String> tutorCalendarMgr) {
+        this.tutorCalendarMgr = tutorCalendarMgr;
+    }
+
+    public Map<String, String> getNotificationMgr() {
+        return notificationMgr;
+    }
+
+    public void setNotificationMgr(Map<String, String> notificationMgr) {
+        this.notificationMgr = notificationMgr;
+    }
+
+    public Map<String, String> getReviewMgr() {
+        return reviewMgr;
+    }
+
+    public void setReviewMgr(Map<String, String> reviewMgr) {
+        this.reviewMgr = reviewMgr;
+    }
+
+    public Map<String, String> getRecommendationMgr() {
+        return recommendationMgr;
+    }
+
+    public void setRecommendationMgr(Map<String, String> recommendationMgr) {
+        this.recommendationMgr = recommendationMgr;
+    }
+
+    public Map<String, String> getTuitionOrderMgr() {
+        return tuitionOrderMgr;
+    }
+
+    public void setTuitionOrderMgr(Map<String, String> tuitionOrderMgr) {
+        this.tuitionOrderMgr = tuitionOrderMgr;
+    }
+
+    public Map<String, String> getAccountMgr() {
+        return accountMgr;
+    }
+
+    public void setAccountMgr(Map<String, String> accountMgr) {
+        this.accountMgr = accountMgr;
     }
 
     @Override
     public String toString() {
         return "AppConfig{" +
-                "appOne=" + appOne +
-                ", appTwo=" + appTwo +
+                "bookmarkMgr=" + bookmarkMgr +
+                ", studentMgr=" + studentMgr +
+                ", tutorCalendarMgr=" + tutorCalendarMgr +
+                ", notificationMgr=" + notificationMgr +
+                ", reviewMgr=" + reviewMgr +
+                ", recommendationMgr=" + recommendationMgr +
+                ", tuitionOrderMgr=" + tuitionOrderMgr +
+                ", accountMgr=" + accountMgr +
                 '}';
     }
 }

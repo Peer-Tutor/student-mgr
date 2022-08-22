@@ -24,14 +24,11 @@ public class StudentController {
 
         System.out.println("appConfig="+ appConfig.toString());
         System.out.println("ver"+ SpringVersion.getVersion());
-        return "Hello world Spring Ver = " + SpringVersion.getVersion() ;
+        return "Hello world Spring Ver = " + SpringVersion.getVersion() + "From Student mgr";
 
     }
     @GetMapping(path="/public-api")
     public @ResponseBody String callPublicApi() {
-        String url = appConfig.getAppTwo().get("url");
-        String port = appConfig.getAppTwo().get("port");
-
         String endpoint = "https://api.publicapis.org/entries"; //url+":"+port;
         System.out.println("endpoint" + endpoint);
 
@@ -41,12 +38,12 @@ public class StudentController {
         return response.toString();
     }
 
-    @GetMapping(path="/call-app-classrmsvc")
+    @GetMapping(path="/call-app-bookmark-mgr")
     public @ResponseBody String callAppTwo() {
-        String url = appConfig.getAppTwo().get("url");
-        String port = appConfig.getAppTwo().get("port");
+        String url = appConfig.getBookmarkMgr().get("url");
+        String port = appConfig.getBookmarkMgr().get("port");
 
-        String endpoint = url+":"+port;
+        String endpoint = url+":"+port + "/";
         System.out.println("endpoint" + endpoint);
 
         RestTemplate restTemplate = new RestTemplate();
