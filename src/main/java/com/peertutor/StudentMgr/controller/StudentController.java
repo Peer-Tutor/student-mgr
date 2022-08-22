@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Controller
-@RequestMapping(path="/student")
+@RequestMapping(path="/student-mgr")
 public class StudentController {
     @Autowired
     AppConfig appConfig;
