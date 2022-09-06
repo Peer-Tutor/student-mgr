@@ -6,6 +6,8 @@
 2. Alternatively, run mySQL container using docker for easy setup.
 3. Run app using ```mvn clean install```, or ```mvn spring-boot:run```
 
+Java Version: 11
+
 ## Run Commands
 
 ### Running Locally without Docker
