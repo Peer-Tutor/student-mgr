@@ -2,11 +2,13 @@ package com.peertutor.StudentMgr.util;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import java.util.Map;
 
 @Configuration
-@ConfigurationProperties(prefix="app-config")
+@ConfigurationProperties(prefix = "app-config")
+@EnableAspectJAutoProxy
 public class AppConfig {
     private Map<String, String> bookmarkMgr;
     private Map<String, String> studentMgr;
@@ -104,7 +106,6 @@ public class AppConfig {
                 ", tutorCalendarMgr=" + tutorCalendarMgr +
                 '}';
     }
-
 
 
 }
