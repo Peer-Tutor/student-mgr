@@ -15,7 +15,8 @@ public class StudentProfileReq {
     public String displayName;
 
     @NotNull
-    public Long accountId;
+    @NotEmpty
+    public String accountName;
 
     public String introduction;
 

@@ -63,7 +63,7 @@ public class StudentController {
         }
 
         StudentDTO studentRetrieved;
-        studentRetrieved = studentService.getStudentProfile(req.accountId);
+        studentRetrieved = studentService.getStudentProfile(req.accountName);
 
         if (studentRetrieved == null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);

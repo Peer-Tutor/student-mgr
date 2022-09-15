@@ -23,8 +23,8 @@ public class StudentService {
         this.studentMapper = studentMapper;
     }
 
-    public StudentDTO getStudentProfile(Long accountId) {
-        Student student = studentRepository.findByAccountId(accountId);
+    public StudentDTO getStudentProfile(String accountName) {
+        Student student = studentRepository.findByAccountName(accountName);
 
         if (student == null) {
             return null;
@@ -35,13 +35,19 @@ public class StudentService {
     }
 
     public StudentDTO createStudentProfile(StudentProfileReq req) {
-        Student student = studentRepository.findByAccountId(req.accountId);
+        Student student = studentRepository.findByAccountName(req.accountName);
 
         if (student == null) {
             student = new Student();
+            student.setAccountName(req.accountName);
         }
 
-        student.setDisplayName(req.displayName);
+        if (req.displayName != null && !req.displayName.trim().isEmpty()) {
+            student.setDisplayName(req.displayName);
+        } else {
+            student.setDisplayName(req.name);
+        }
+
         student.setIntroduction(req.introduction);
         student.setSubjects(req.subjects);
 

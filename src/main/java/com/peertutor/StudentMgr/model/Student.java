@@ -14,8 +14,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "account_id", nullable = false, unique = true)
-    private Long accountId;
+    @Column(name = "account_name", nullable = false, unique = true)
+    private String accountName;
 
     @Column(name = "display_name")
     private String displayName;
@@ -34,12 +34,12 @@ public class Student {
         this.id = id;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public String getAccountName() {
+        return accountName;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
     public String getDisplayName() {

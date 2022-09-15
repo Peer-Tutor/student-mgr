@@ -20,7 +20,7 @@ public class StudentDTO implements Serializable {
 
     private Long id;
 
-    private Long accountId;
+    private String accountName;
 
     private String displayName;
 
@@ -36,12 +36,12 @@ public class StudentDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public String getAccountId() {
+        return accountName;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setAccountId(String accountName) {
+        this.accountName = accountName;
     }
 
     public String getDisplayName() {
