@@ -35,11 +35,11 @@ public class StudentService {
     }
 
     public StudentDTO createStudentProfile(StudentProfileReq req) {
-        Student student = studentRepository.findByAccountName(req.accountName);
+        Student student = studentRepository.findByAccountName(req.name);
 
         if (student == null) {
             student = new Student();
-            student.setAccountName(req.accountName);
+            student.setAccountName(req.name);
         }
 
         if (req.displayName != null && !req.displayName.trim().isEmpty()) {
