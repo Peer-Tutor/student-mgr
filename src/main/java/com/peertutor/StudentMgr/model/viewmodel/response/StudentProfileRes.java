@@ -6,4 +6,6 @@ public class StudentProfileRes {
     public String introduction;
 
     public String subjects;
+
+    public Long id;
 }

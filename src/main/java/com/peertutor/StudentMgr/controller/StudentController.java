@@ -51,6 +51,7 @@ public class StudentController {
         res.displayName = savedUser.getDisplayName();
         res.introduction = savedUser.getIntroduction();
         res.subjects = savedUser.getSubjects();
+        res.id = savedUser.getId();
 
         return ResponseEntity.ok().body(res);
     }
@@ -73,6 +74,7 @@ public class StudentController {
         res.displayName = studentRetrieved.getDisplayName();
         res.introduction = studentRetrieved.getIntroduction();
         res.subjects = studentRetrieved.getSubjects();
+        res.id = studentRetrieved.getId();
 
         return ResponseEntity.ok().body(res);
     }
