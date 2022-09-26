@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class StudentService {
     private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
@@ -23,13 +25,24 @@ public class StudentService {
         this.studentMapper = studentMapper;
     }
 
-    public StudentDTO getStudentProfile(String accountName) {
+    public StudentDTO getStudentProfileByAccountName(String accountName) {
         Student student = studentRepository.findByAccountName(accountName);
 
         if (student == null) {
             return null;
         }
         StudentDTO result = studentMapper.toDto(student);
+
+        return result;
+    }
+
+    public StudentDTO getStudentProfileById(Long id) {
+        Optional<Student> student = studentRepository.findById(id);
+
+        if (!student.isPresent()) {
+            return null;
+        }
+        StudentDTO result = studentMapper.toDto(student.get());
 
         return result;
     }

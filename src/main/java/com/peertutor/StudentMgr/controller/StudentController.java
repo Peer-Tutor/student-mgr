@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/student-mgr")
@@ -57,14 +58,24 @@ public class StudentController {
     }
 
     @GetMapping(path = "/student")
-    public @ResponseBody ResponseEntity<StudentProfileRes> getStudentProfile(@RequestBody @Valid StudentProfileReq req) {
-        boolean result = authService.getAuthentication(req.name, req.sessionToken);
+    public @ResponseBody ResponseEntity<StudentProfileRes> getStudentProfile(
+            @RequestParam(name = "name") String name,
+            @RequestParam(name = "sessionToken") String sessionToken,
+            @RequestParam(name = "accountName") Optional<String> accountName,
+            @RequestParam(name = "id") Optional<Long> id
+    ) {
+        boolean result = authService.getAuthentication(name, sessionToken);
         if (!result) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
 
-        StudentDTO studentRetrieved;
-        studentRetrieved = studentService.getStudentProfile(req.accountName);
+        StudentDTO studentRetrieved = null;
+
+        if (id.isPresent()) {
+            studentRetrieved = studentService.getStudentProfileById(id.get());
+        } else if (accountName.isPresent()) {
+            studentRetrieved = studentService.getStudentProfileByAccountName(accountName.get());
+        }
 
         if (studentRetrieved == null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
