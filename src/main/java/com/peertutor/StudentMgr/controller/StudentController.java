@@ -7,14 +7,21 @@ import com.peertutor.StudentMgr.service.AuthService;
 import com.peertutor.StudentMgr.service.StudentService;
 import com.peertutor.StudentMgr.service.dto.StudentDTO;
 import com.peertutor.StudentMgr.util.AppConfig;
+import io.github.jhipster.web.util.PaginationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/student-mgr")
@@ -88,6 +95,41 @@ public class StudentController {
         res.id = studentRetrieved.getId();
 
         return ResponseEntity.ok().body(res);
+    }
+
+    @GetMapping(path = "/students")
+    public @ResponseBody ResponseEntity<List<StudentDTO>> getStudentProfile(
+            @RequestParam(name = "name") String name,
+            @RequestParam(name = "sessionToken") String sessionToken,
+            @RequestParam(name = "displayName") Optional<String> displayName,
+            Pageable pageable) {
+        boolean result = authService.getAuthentication(name, sessionToken);
+        if (!result) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+
+        List<StudentDTO> students = studentService.getAllStudents();
+
+//        StudentProfileRes res = new StudentProfileRes();
+//        res.displayName = studentRetrieved.getDisplayName();
+//        res.introduction = studentRetrieved.getIntroduction();
+//        res.subjects = studentRetrieved.getSubjects();
+//        res.id = studentRetrieved.getId();
+////
+//        TutorCriteria criteria = new TutorCriteria(displayName, subjects, introduction, certificates);
+//        Page<TutorDTO> page = tutorService.getTutorByCriteria(criteria, pageable);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+//        List<TutorProfileRes> filteredTutors = page.getContent().stream().map(tutorDTO -> {
+//            TutorProfileRes res = new TutorProfileRes();
+//            res.displayName = tutorDTO.getDisplayName();
+//            res.introduction = tutorDTO.getIntroduction();
+//            res.subjects = tutorDTO.getSubjects();
+//            res.certificates = tutorDTO.getCertificates();
+//            res.id = tutorDTO.getId();
+//
+//            return res;Ï
+//        }).collect(Collectors.toList());
+        return ResponseEntity.ok().body(students);
     }
 
 }

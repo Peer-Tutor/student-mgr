@@ -10,7 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -23,6 +26,13 @@ public class StudentService {
     public StudentService(StudentRepository studentRepository, StudentMapper studentMapper) {
         this.studentRepository = studentRepository;
         this.studentMapper = studentMapper;
+    }
+
+    public List<StudentDTO> getAllStudents() {
+        List<Student> students = studentRepository.findAll();
+
+        return students.stream().map(studentMapper::toDto).collect(Collectors.toList());
+
     }
 
     public StudentDTO getStudentProfileByAccountName(String accountName) {
